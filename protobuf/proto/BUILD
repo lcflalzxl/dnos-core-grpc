@@ -37,6 +37,7 @@ java_proto_library(
         ":InboundPacket_proto",
         ":Instruction_proto",
         ":Instructions_proto",
+        ":OutputInstruction_proto",
         ":LinkDescription_proto",
         ":LinkEnums_proto",
         ":LinkEvent_proto",
@@ -141,7 +142,20 @@ proto_library(
     srcs = ["net/flow/instructions/InstructionProto.proto"],
     proto_source_root = PROTO_SOURCE_ROOT,
     visibility = ["//visibility:public"],
-    deps = [":Port_proto"]
+    deps = [":OutputInstruction_proto"]
+
+)
+
+
+
+proto_library(
+    name = "OutputInstruction_proto",
+    srcs = ["net/flow/instructions/OutputInstructionProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    visibility = ["//visibility:public"],
+    deps = [
+        ":Port_proto",
+    ],
 )
 
 proto_library(
