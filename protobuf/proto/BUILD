@@ -70,6 +70,7 @@ proto_library(
         ":OutboundPacket_proto",
         ":PacketContext_proto",
         ":LinkEvent_proto",
+        ":FlowRule_proto",
     ],
     visibility = ["//visibility:public"],
 )
