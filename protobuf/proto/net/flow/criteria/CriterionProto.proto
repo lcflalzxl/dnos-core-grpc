@@ -95,7 +95,7 @@ message CriterionProto {
 
 // Corresponds to org.onosproject.net.flow.criteria.EthCriterion.
 message EthCriterionProto {
-    bytes macAddress = 1;
+    string macAddress = 1;
 }
 
 // Corresponds to org.onosproject.net.flow.criteria.EthTypeCriterion.
