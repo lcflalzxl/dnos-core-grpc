@@ -90,6 +90,7 @@ message CriterionProto {
     oneof criterion {
         EthCriterionProto ethCriterion = 2;
         EthTypeCriterionProto ethTypeCriterion = 3;
+        IPCriterionProto ipCriterion = 4;
     }
 }
 
