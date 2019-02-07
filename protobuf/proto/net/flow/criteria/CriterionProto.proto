@@ -102,3 +102,8 @@ message EthCriterionProto {
 message EthTypeCriterionProto {
     int32 ethType = 1;
 }
+
+// Corresponds to org.onosproject.net.flow.criteria.IPCriterion
+message IPCriterionProto {
+    bytes IpPrefix = 1;
+}
