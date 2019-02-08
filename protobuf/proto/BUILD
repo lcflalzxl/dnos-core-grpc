@@ -57,6 +57,13 @@ java_proto_library(
         ":Region_proto",
         ":TrafficTreatment_proto",
         ":TraficSelector_proto",
+        ":ClusterId_proto",
+        ":TopologyCluster_proto",
+        ":Topology_proto",
+        ":TopologyGraph_proto",
+        ":TopologyVertex_proto",
+        ":TopologyEdge_proto",
+        ":DeviceId_proto",
         "@com_google_protobuf//:any_proto",
     ],
 )
@@ -71,6 +78,8 @@ proto_library(
         ":PacketContext_proto",
         ":LinkEvent_proto",
         ":FlowRule_proto",
+        ":TopologyGraph_proto",
+        ":Topology_proto",
     ],
     visibility = ["//visibility:public"],
 )
@@ -421,4 +430,63 @@ proto_library(
     proto_source_root = PROTO_SOURCE_ROOT,
     visibility = ["//visibility:public"],
     deps = [":RegionEnums_proto"],
+)
+
+proto_library(
+    name = "DeviceId_proto",
+    srcs = ["net/DeviceIdProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    visibility = ["//visibility:public"],
+)
+
+### topology ####
+proto_library(
+    name = "Topology_proto",
+    srcs = ["net/topology/TopologyProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "TopologyEdge_proto",
+    srcs = ["net/topology/TopologyEdgeProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    deps = [":Link_proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "TopologyGraph_proto",
+    srcs = ["net/topology/TopologyGraphProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    deps = [
+        ":TopologyEdge_proto",
+        ":TopologyVertex_proto",
+    ],
+)
+
+proto_library(
+    name = "TopologyVertex_proto",
+    srcs = ["net/topology/TopologyVertexProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    deps = [":DeviceId_proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "ClusterId_proto",
+    srcs = ["net/topology/ClusterIdProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "TopologyCluster_proto",
+    srcs = ["net/topology/TopologyClusterProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    deps = [
+        ":ClusterId_proto",
+        ":TopologyVertex_proto",
+    ],
+    visibility = ["//visibility:public"],
 )
