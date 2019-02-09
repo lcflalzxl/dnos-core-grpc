@@ -32,7 +32,7 @@ service EventNotification {
 
 }
 
-service TopologyService {
+service TopoService {
     rpc getGraph (Empty) returns (net.topology.TopologyGraphProto);
     rpc currentTopology (Empty) returns (net.topology.TopologyProto);
 }
