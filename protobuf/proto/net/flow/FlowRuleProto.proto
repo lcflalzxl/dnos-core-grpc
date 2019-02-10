@@ -23,9 +23,6 @@ import "protobuf/proto/net/flow/TrafficSelectorProto.proto";
 import "protobuf/proto/net/flow/TrafficTreatmentProto.proto";
 import "protobuf/proto/net/flow/FlowRuleEnumsProto.proto";
 
-service FlowService {
-    rpc addFlow (FlowRuleProto) returns (Status);
-}
 
 // Corresponds to org.onosproject.net.flow.DefaultFlowRule.
 message FlowRuleProto {
@@ -41,9 +38,7 @@ message FlowRuleProto {
     net.flow.TrafficSelectorProto selector = 9;
     net.flow.TrafficTreatmentProto treatment = 10;
     net.flow.FlowRemoveReasonProto reason = 11;
+    string app_name = 12;
 }
 
-message Status {
-    bool stat = 1;
-}
 
