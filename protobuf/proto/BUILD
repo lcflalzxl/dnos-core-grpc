@@ -64,20 +64,46 @@ java_proto_library(
         ":TopologyVertex_proto",
         ":TopologyEdge_proto",
         ":DeviceId_proto",
+        ":Status_proto",
+        ":EventNotification_proto",
         "@com_google_protobuf//:any_proto",
     ],
 )
 
-### sevices ###
+#### grpc-integration app ####
 proto_library(
-    name = "Services_proto",
-    srcs = ["net/ServicesProto.proto"],
+    name = "Status_proto",
+    srcs = ["grpcintegration/StatusProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "EventNotification_proto",
+    srcs = ["grpcintegration/EventNotificationProto.proto"],
     proto_source_root = PROTO_SOURCE_ROOT,
     deps = [
+        ":LinkEvent_proto",
+        ":PacketContext_proto",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "Services_proto",
+    srcs = ["grpcintegration/ServicesProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    deps = [
+        ":ClusterId_proto",
+        ":Device_proto",
+        ":EventNotification_proto",
+        ":FlowRule_proto",
+        ":LinkEvent_proto",
         ":OutboundPacket_proto",
         ":PacketContext_proto",
-        ":LinkEvent_proto",
-        ":FlowRule_proto",
+        ":Path_proto",
+        ":Status_proto",
+        ":TopologyCluster_proto",
         ":TopologyGraph_proto",
         ":Topology_proto",
     ],

@@ -17,9 +17,9 @@ syntax = "proto3";
 option java_package = "org.onosproject.grpc.net.device.models";
 
 
-import "net/DeviceProto.proto";
-import "net/device/DeviceEnumsProto.proto";
-import "net/PortProto.proto";
+import "protobuf/proto/net/DeviceProto.proto";
+import "protobuf/proto/net/device/DeviceEnumsProto.proto";
+import "protobuf/proto/net/PortProto.proto";
 
 package net.device;
 
