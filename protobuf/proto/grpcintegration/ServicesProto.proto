@@ -25,6 +25,7 @@ service PacketOutService {
 // Corresponds to FlowRule service
 service FlowService {
     rpc addFlow (net.flow.FlowRuleProto) returns (FlowServiceStatus);
+    rpc removeFlow (net.flow.FlowRuleProto) returns (FlowServiceStatus);
 }
 
 // Corresponds to Topology service
