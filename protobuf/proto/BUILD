@@ -2,6 +2,64 @@ load("@io_grpc_grpc_java//:java_grpc_library.bzl", "java_grpc_library")
 
 PROTO_SOURCE_ROOT = "protobuf/proto"
 
+DEPS = [
+    ":ClusterId_proto",
+    ":ConnectPoint_proto",
+    ":Criterion_proto",
+    ":DeviceDescription_proto",
+    ":DeviceEnums_proto",
+    ":DeviceEvent_proto",
+    ":DeviceId_proto",
+    ":Device_proto",
+    ":DisjointPath_proto",
+    ":EventNotification_proto",
+    ":FlowEntryEnums_proto",
+    ":FlowEntry_proto",
+    ":FlowRuleEnums_proto",
+    ":FlowRule_proto",
+    ":HostDescription_proto",
+    ":HostEnums_proto",
+    ":HostEvent_proto",
+    ":HostId_proto",
+    ":HostLocation_proto",
+    ":Host_proto",
+    ":InboundPacket_proto",
+    ":Instruction_proto",
+    ":Instructions_proto",
+    ":LinkDescription_proto",
+    ":LinkEnums_proto",
+    ":LinkEvent_proto",
+    ":Link_proto",
+    ":MastershipRole_proto",
+    ":OutboundPacket_proto",
+    ":PacketContext_proto",
+    ":PacketEnums_proto",
+    ":PacketEvent_proto",
+    ":Path_proto",
+    ":PortDescription_proto",
+    ":PortEnums_proto",
+    ":PortStatistics_proto",
+    ":Port_proto",
+    ":ProviderId_proto",
+    ":RegionEnums_proto",
+    ":Region_proto",
+    ":Services_proto",
+    ":Status_proto",
+    ":TopologyCluster_proto",
+    ":TopologyEdge_proto",
+    ":TopologyGraph_proto",
+    ":TopologyVertex_proto",
+    ":Topology_proto",
+    ":TrafficTreatment_proto",
+    ":TraficSelector_proto",
+    "@com_google_protobuf//:any_proto",
+]
+
+## Go
+
+## C++
+
+#### Java
 java_grpc_library(
     name = "onos-core-protobuf-services-proto",
     srcs = [":Services_proto"],
@@ -11,63 +69,10 @@ java_grpc_library(
     ],
 )
 
-
-
 java_proto_library(
     name = "onos-protobuf-models-proto",
     visibility = ["//visibility:public"],
-    deps = [
-        ":ConnectPoint_proto",
-        ":Criterion_proto",
-        ":DeviceDescription_proto",
-        ":DeviceEnums_proto",
-        ":DeviceEvent_proto",
-        ":Device_proto",
-        ":DisjointPath_proto",
-        ":FlowEntryEnums_proto",
-        ":FlowEntry_proto",
-        ":FlowRuleEnums_proto",
-        ":FlowRule_proto",
-        ":HostDescription_proto",
-        ":HostEnums_proto",
-        ":HostEvent_proto",
-        ":HostId_proto",
-        ":HostLocation_proto",
-        ":Host_proto",
-        ":InboundPacket_proto",
-        ":Instruction_proto",
-        ":Instructions_proto",
-        ":LinkDescription_proto",
-        ":LinkEnums_proto",
-        ":LinkEvent_proto",
-        ":Link_proto",
-        ":MastershipRole_proto",
-        ":OutboundPacket_proto",
-        ":Services_proto",
-        ":PacketContext_proto",
-        ":PacketEnums_proto",
-        ":PacketEvent_proto",
-        ":Path_proto",
-        ":PortDescription_proto",
-        ":PortEnums_proto",
-        ":PortStatistics_proto",
-        ":Port_proto",
-        ":ProviderId_proto",
-        ":RegionEnums_proto",
-        ":Region_proto",
-        ":TrafficTreatment_proto",
-        ":TraficSelector_proto",
-        ":ClusterId_proto",
-        ":TopologyCluster_proto",
-        ":Topology_proto",
-        ":TopologyGraph_proto",
-        ":TopologyVertex_proto",
-        ":TopologyEdge_proto",
-        ":DeviceId_proto",
-        ":Status_proto",
-        ":EventNotification_proto",
-        "@com_google_protobuf//:any_proto",
-    ],
+    deps = DEPS,
 )
 
 #### grpc-integration app ####
@@ -82,22 +87,24 @@ proto_library(
     name = "EventNotification_proto",
     srcs = ["grpcintegration/EventNotificationProto.proto"],
     proto_source_root = PROTO_SOURCE_ROOT,
+    visibility = ["//visibility:public"],
     deps = [
         ":LinkEvent_proto",
         ":PacketContext_proto",
     ],
-    visibility = ["//visibility:public"],
 )
 
 proto_library(
     name = "Services_proto",
     srcs = ["grpcintegration/ServicesProto.proto"],
     proto_source_root = PROTO_SOURCE_ROOT,
+    visibility = ["//visibility:public"],
     deps = [
         ":ClusterId_proto",
         ":Device_proto",
         ":EventNotification_proto",
         ":FlowRule_proto",
+        ":Host_proto",
         ":LinkEvent_proto",
         ":OutboundPacket_proto",
         ":PacketContext_proto",
@@ -107,7 +114,6 @@ proto_library(
         ":TopologyGraph_proto",
         ":Topology_proto",
     ],
-    visibility = ["//visibility:public"],
 )
 
 ### net ###
@@ -177,11 +183,8 @@ proto_library(
     srcs = ["net/flow/instructions/InstructionProto.proto"],
     proto_source_root = PROTO_SOURCE_ROOT,
     visibility = ["//visibility:public"],
-    deps = [":Port_proto"]
-
+    deps = [":Port_proto"],
 )
-
-
 
 proto_library(
     name = "Instructions_proto",
@@ -477,8 +480,8 @@ proto_library(
     name = "TopologyEdge_proto",
     srcs = ["net/topology/TopologyEdgeProto.proto"],
     proto_source_root = PROTO_SOURCE_ROOT,
-    deps = [":Link_proto"],
     visibility = ["//visibility:public"],
+    deps = [":Link_proto"],
 )
 
 proto_library(
@@ -495,8 +498,8 @@ proto_library(
     name = "TopologyVertex_proto",
     srcs = ["net/topology/TopologyVertexProto.proto"],
     proto_source_root = PROTO_SOURCE_ROOT,
-    deps = [":DeviceId_proto"],
     visibility = ["//visibility:public"],
+    deps = [":DeviceId_proto"],
 )
 
 proto_library(
@@ -510,9 +513,9 @@ proto_library(
     name = "TopologyCluster_proto",
     srcs = ["net/topology/TopologyClusterProto.proto"],
     proto_source_root = PROTO_SOURCE_ROOT,
+    visibility = ["//visibility:public"],
     deps = [
         ":ClusterId_proto",
         ":TopologyVertex_proto",
     ],
-    visibility = ["//visibility:public"],
 )
