@@ -44,6 +44,7 @@ DEPS = [
     ":RegionEnums_proto",
     ":Region_proto",
     ":Services_proto",
+    ":ControlMessages_proto",
     ":Status_proto",
     ":TopologyCluster_proto",
     ":TopologyEdge_proto",
@@ -54,10 +55,6 @@ DEPS = [
     ":TraficSelector_proto",
     "@com_google_protobuf//:any_proto",
 ]
-
-## Go
-
-## C++
 
 #### Java
 java_grpc_library(
@@ -76,6 +73,21 @@ java_proto_library(
 )
 
 #### grpc-integration app ####
+proto_library(
+    name = "ControlMessages_proto",
+    srcs = ["grpcintegration/ControlMessagesProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    deps = [
+        ":ClusterId_proto",
+        ":Device_proto",
+        ":Host_proto",
+        ":Path_proto",
+        ":TopologyCluster_proto",
+        ":Topology_proto",
+    ],
+)
+
+
 proto_library(
     name = "Status_proto",
     srcs = ["grpcintegration/StatusProto.proto"],
@@ -100,19 +112,14 @@ proto_library(
     proto_source_root = PROTO_SOURCE_ROOT,
     visibility = ["//visibility:public"],
     deps = [
-        ":ClusterId_proto",
         ":Device_proto",
         ":EventNotification_proto",
         ":FlowRule_proto",
-        ":Host_proto",
-        ":LinkEvent_proto",
         ":OutboundPacket_proto",
-        ":PacketContext_proto",
-        ":Path_proto",
         ":Status_proto",
-        ":TopologyCluster_proto",
         ":TopologyGraph_proto",
         ":Topology_proto",
+        ":ControlMessages_proto"
     ],
 )
 
