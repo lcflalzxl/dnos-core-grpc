@@ -119,7 +119,9 @@ proto_library(
         ":Status_proto",
         ":TopologyGraph_proto",
         ":Topology_proto",
-        ":ControlMessages_proto"
+        ":ControlMessages_proto",
+        ":HostId_proto",
+        ":Host_proto"
     ],
 )
 
