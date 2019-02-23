@@ -18,6 +18,7 @@ import "protobuf/proto/net/DeviceProto.proto";
 import "protobuf/proto/net/ConnectPointProto.proto";
 
 
+
 // Corresponds to PacketOut service
 service PacketOutService {
     rpc emit (net.packet.OutboundPacketProto) returns (PacketOutStatus);
@@ -57,11 +58,12 @@ service DeviceService {
     rpc getDevice (net.DeviceIdProto) returns (net.DeviceProto);
 }
 
+
 // Corresponds to Core Service
 service CoreService {
 
-}
 
+}
 
 // Corresponds to EventNotification service
 service EventNotification {
