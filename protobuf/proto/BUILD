@@ -53,6 +53,8 @@ DEPS = [
     ":Topology_proto",
     ":TrafficTreatment_proto",
     ":TraficSelector_proto",
+    ":OpenFlowPacketCtx_proto",
+    ":Dpid_proto",
     "@com_google_protobuf//:any_proto",
 ]
 
@@ -105,6 +107,7 @@ proto_library(
     deps = [
         ":LinkEvent_proto",
         ":PacketContext_proto",
+        ":OpenFlowPacketCtx_proto"
     ],
 )
 
@@ -532,4 +535,22 @@ proto_library(
         ":ClusterId_proto",
         ":TopologyVertex_proto",
     ],
+)
+
+
+## protocols
+
+proto_library(
+    name = "Dpid_proto",
+    srcs = ["protocols/openflow/DpidProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "OpenFlowPacketCtx_proto",
+    srcs = ["protocols/openflow/OpenFlowPacketContextProto.proto"],
+    proto_source_root = PROTO_SOURCE_ROOT,
+    deps = [":Dpid_proto"],
+    visibility = ["//visibility:public"],
 )
