@@ -35,7 +35,7 @@ message OutputInstructionProto {
 }
 
 message ModifyDestnationMacProto {
-   String mac = 1;
+   string mac = 1;
 }
 
 // Corresponds to org.onosproject.net.flow.instructions.Instructions.NoActionInstruction
