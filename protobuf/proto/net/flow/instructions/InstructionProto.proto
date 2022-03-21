@@ -20,6 +20,7 @@ package net.flow.instructions;
 
 import "protobuf/proto/net/PortProto.proto";
 
+
 message InstructionProto {
     oneof instruction {
         OutputInstructionProto output = 1;
@@ -34,7 +35,7 @@ message OutputInstructionProto {
 }
 
 message ModifyDestnationMacProto {
-    Mac mac = 1;
+   String mac = 1;
 }
 
 // Corresponds to org.onosproject.net.flow.instructions.Instructions.NoActionInstruction
