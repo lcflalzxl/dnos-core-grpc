@@ -22,7 +22,7 @@ import "protobuf/proto/net/PortProto.proto";
 
 enum TypeProto {
     NOACTION = 0;
-    OUTPUT = 1;
+    PortProto OUTPUT = 1;
     GROUP = 2;
     QUEUE = 3;
     METER = 4;
