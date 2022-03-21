@@ -20,23 +20,28 @@ package net.flow.instructions;
 
 import "protobuf/proto/net/PortProto.proto";
 
-enum TypeProto {
-    NOACTION = 0;
-    PortProto OUTPUT = 1;
-    GROUP = 2;
-    QUEUE = 3;
-    METER = 4;
-    L0MODIFICATION = 5;
-    L1MODIFICATION = 6;
-    L2MODIFICATION = 7;
-    L3MODIFICATION = 8;
-    L4MODIFICATION = 9;
-    TABLE = 10;
-    METADATA = 11;
-    PROTOCOL_INDEPENDENT = 12;
-    EXTENSION = 13;
+message InstructionProto {
+    oneof instruction {
+        OutputInstructionProto output = 1;
+        ModifyDestnationMacProto destnationMac = 2;
+        NoActionInstructionProto noAction = 3;
+        TableTypeTransition tableTypeTransition = 4;
+    }
+}
+// Corresponds to org.onosproject.net.flow.instructions.Instructions.OutputInstruction
+message OutputInstructionProto {
+    PortProto port = 1;
 }
 
-message InstructionProto {
-    TypeProto type = 1;
+message ModifyDestnationMacProto {
+    Mac mac = 1;
+}
+
+// Corresponds to org.onosproject.net.flow.instructions.Instructions.NoActionInstruction
+message NoActionInstructionProto {
+
+}
+// Corresponds to org.onosproject.net.flow.instructions.Instructions.TableTypeTransition
+message TableTypeTransition {
+    int32 tableId = 1;
 }
